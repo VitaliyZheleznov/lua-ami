@@ -89,10 +89,10 @@ function AMI:execute(command, params)
           noop() 
         elseif response and response.EventList == 'Complete' then  -- end of events 
           return results, action_id 
-        elseif response and response.Event and command == 'PJSIPShowEndpoint' then  -- events ongoing 
-          results[response.Event] = response 
-        elseif response and response.Event and command == 'PJSIPShowEndpoints' then  -- events ongoing         
+        elseif response and response.Event and command == 'PJSIPShowEndpoints' then  -- events ongoing [PJSIPShowEndpoints]
           table.insert(results, response) 
+        elseif response and response.Event then  -- events ongoing 
+          results[response.Event] = response 
         elseif response and response.Response == 'Success' and not response.EventList then  -- no events will came, return output 
           return response.Output[1], action_id
         end 

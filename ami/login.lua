@@ -26,7 +26,7 @@ local challenge_login = function(conn, user, secret)
 
   local result, err = conn:command("Challenge", { AuthType = "md5" })
   if not result then
-    return nil, "AMI: Can't get challenge:" .. err
+    return nil, "AMI: Can't get challenge:" .. tostring(err)
   end
   result, err  = conn:get_reply()
   if not result then
