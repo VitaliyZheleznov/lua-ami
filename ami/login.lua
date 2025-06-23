@@ -39,7 +39,8 @@ local challenge_login = function(conn, user, secret)
         {
           AuthType = "md5";
           Username = user;
-          Key = md5.sumhexa(result.Challenge .. secret)
+          Key = md5.sumhexa(result.Challenge .. secret);
+          Events = "off";
         }
       )
     if result then
@@ -69,6 +70,7 @@ local simple_login = function(conn, user, secret)
       {
         Username = user;
         Secret = secret;
+        Events = "off";
       }
     )
   if not result then
